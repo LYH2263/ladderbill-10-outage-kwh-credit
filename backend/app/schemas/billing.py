@@ -3,7 +3,8 @@ from pydantic import BaseModel, Field
 
 class BillRequest(BaseModel):
     account_id: int | None = None
-    kwh: float = Field(ge=0)
+    period: str | None = None
+    kwh: float | None = Field(default=None, ge=0)
     peak: bool = False
     persist: bool = True
 
