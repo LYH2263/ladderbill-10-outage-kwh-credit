@@ -22,6 +22,17 @@ def init_db():
         result_json TEXT,
         created_at TEXT
     );
+    CREATE TABLE IF NOT EXISTS outage_credits(
+        id INTEGER PRIMARY KEY,
+        account_id INTEGER,
+        period TEXT,
+        kwh REAL,
+        reason TEXT,
+        status TEXT DEFAULT 'active',
+        voided_at TEXT,
+        void_reason TEXT,
+        created_at TEXT
+    );
     """
     )
     if conn.execute("SELECT COUNT(*) c FROM accounts").fetchone()["c"] == 0:
